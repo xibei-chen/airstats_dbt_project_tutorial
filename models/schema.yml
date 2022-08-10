@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: dim_airports_filtered
+    description: Filtered out closed airports
+    columns:
+
+      - name: airport_ident
+        description: Primary key and foreign key
+        tests:
+          - unique
+          - not_null
+
+      - name: airport_type
+        description: The type of the airport. 
+        tests:
+          - accepted_values:
+              values: ['heliport', 'balloonport', 'seaplane_base', 'small_airport', 'medium_airport', 'large_airport']
+
+  - name: dim_airports_freqs_aggreagated
+    description: Number of frequencies for each airport.
+    columns:
+      - name: airport_ident
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              to: ref('dim_airports_filteredd')
+              field: airport_ident
+  
+  - name: dim_navaids_aggreagated
+    description: Number of navaids for each airport.
+    columns:
+      - name: airport_ident
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              to: ref('dim_airports_filteredd')
+              field: airport_ident
+
+  - name: dim_runways_aggreagated
+    description: Number of runways for each airport.
+    columns:
+      - name: airport_ident
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              to: ref('dim_airports_filteredd')
+              field: airport_ident
+
+      

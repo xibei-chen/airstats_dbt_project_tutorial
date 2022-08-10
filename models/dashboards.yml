@@ -1,0 +1,16 @@
+version: 2
+
+exposures:
+  - name: AirStats Analytics Dashboard
+    type: dashboard
+    maturity: low
+    url: https://390cad72.us2a.app.preset.io/superset/dashboard/p/bmw84rGWn6K/
+    description: Dashboard of the AirStats Analytics.
+      
+
+    depends_on:
+      - ref('airstats_analytics')
+
+    owner:
+      name: XXXXXXXX
+      email: XXXXXXXXX
